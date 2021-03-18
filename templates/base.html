@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Star Social</title>
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'lf_platform/css/master.css' %}">
+
+  </head>
+
+
+  <body>
+    <div class="header">
+      <div class="col-md-6">
+        <h1>LOST & FOUND</h1>
+      </div>
+      <div class="col-md-6">
+        {% if user.is_authenticated %}
+        <h4 style="">Hello @{{user.username}}</h4>
+        {% endif %}
+      </div>
+    </div>
+    <nav class="navbar  mynav text-whiteS" role="navigation" id="navbar">
+    			<div class="container">
+
+            <a class="navbar-brand mynav active" href="{% url 'home' %}">HOME</a>
+
+    					<ul class="nav navbar-nav navbar-right">
+    						{% if user.is_authenticated %}
+                      <li><a href="{% url 'posts:all' %}" class="btn btn-simple">ITEMS</a></li>
+                      <li><a href="{% url 'posts:create' %}" class="btn btn-simple">Register New</a></li>
+                      <li><a href="{% url 'about' %}"class="btn btn-simple">About Us</a></li>
+                      <li><a href="{% url 'login_logout:logout' %}" class="btn btn-simple">Log out</a></li>
+    						{% else %}
+    						      <li><a href="{% url 'about' %}"class="btn btn-simple">About Us</a></li>
+    						      <li><a href="{% url 'login_logout:login' %}" class="btn btn-simple">Log in</a></li>
+    						      <li><a href="{% url 'login_logout:signup' %}" class="btn btn-simple">Sign up</a></li>
+    						{% endif %}
+    					</ul>
+
+
+
+    			</div>
+    		</nav>
+        <div class="container mycontent">
+          {% block content_block %}
+
+          {% endblock %}
+
+        </div>
+
+
+<canvas id="canvas"></canvas>
+
+
+
+  </body>
+</html>

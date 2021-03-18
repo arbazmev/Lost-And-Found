@@ -1,0 +1,42 @@
+body{
+  background-color: #c5e3c7;
+  width:100%;
+  height:100%;
+}
+
+.header{
+  height: 100px;
+  font-family:'Chewy',cursive;
+  font-size: 100px;
+  background-color: #280b42;
+}
+h1{
+  color: white;
+}
+
+.mynav{
+  background-color: purple;
+}
+
+li{
+  color: white;
+}
+
+h4{
+		padding-bottom: : 2px;
+		margin-bottom: : 0px;
+		text-align: right;
+		font-family: 'Concert One', cursive;
+		font-size: 20px;
+    color: #14b81f;
+	}
+
+.footer{
+     position: fixed;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+     background-color: red;
+     color: white;
+     text-align: center;
+  }

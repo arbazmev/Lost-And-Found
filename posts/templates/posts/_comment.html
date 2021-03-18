@@ -1,0 +1,18 @@
+<div class="post media">
+  <h3>{{comment.message_html|safe}}</h3>
+  <div class="media-body">
+    <strong>{{ comment.user.username }}</strong>
+    <h5 class="media-heading">
+    <span class="username"><a href="{% url 'posts:for_user' username=comment.user.username %}">@{{comment.user.username}}</a></span>
+    <time class="time"><a href="{% url 'comments:single' username=comment.user.username pk=comment.pk %}">{{comment.created_at}}</a></time>
+    </h5>
+    <div class="media-footer">
+      {% if user.is_authenticated and comment.user == user %}
+      <a href="{% url 'posts:comment_remove' pk=comment.pk %}" title="delete" class="btn btn-simple">
+       <span class="glyphicon glyphicon-remove text-danger" aria-hidden='true'></span>
+       <span class="text-danger icon-label" >Delete</span>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</div>

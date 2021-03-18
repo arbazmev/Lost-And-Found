@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content_block %}
+<div class="index">
+  <h1 class="animate backwards" style="font-size:100px;">YOU LOST<br> WE FOUND</h1>
+  {% if user.is_authenticated %}
+  <h1>Welcome to the LOST & FOUND</h1>
+  <h1>Register here if you Lost and Found Something</h1>
+  <a href="{% url 'posts:all' %}" class="btn btn-lg btn-fill btn-success">
+  <span class="glyphicon glyphicon-plus-sign" ></span>Register your item</a>
+  {% else %}
+  <h1>Login Here ! to enjoy the cool stuff</h1>
+  <a href="{% url 'login_logout:login' %}" class="btn btn-success"><span class="glyphicon glyphicon-user"> Log in</span></a>
+  <a href="{% url 'login_logout:signup' %}" class="btn btn-warning">New user !</a>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'posts/post_base.html' %}
+{% block pregroup %}
+<div class="col-md-8">
+  {% if user.is_authenticated %}
+   <a href="{% url 'posts:create' %}" class="btn btn-md btn-fill btn-warning">
+   <span class="glyphicon glyphicon-plus-sign" ></span>Register New Item</a>
+  {% endif %}
+  <hr>
+  <div class="list-group">
+    {% for post in object_list %}
+      <a class="list-group-item" href="{% url 'posts:single' slug=post.slug %}">
+         <h3 class="title list-group-item-heading" >{{post.name}}</h3>
+         <div class="list-group-item-text-container-fluid">
+           {{post.description_html|safe}}
+           <div class="row">
+             <div class="col-md-4">
+               <span class="badge badge-primary" >People commented </span>
+               <span class="badge badge-success" >{{post.comments.count}}</span>
+             </div>
+             <div class="col-md-4">
+               <span class="badge" >Posted by : @{{post.user}}</span>
+             </div>
+           </div>
+         </div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+{% block group_content %}
+  <div class="col-md-4">
+    <div class="content">
+      {% if user.is_authenticated %}
+        <h3>Hello<a href="{% url 'posts:for_user' username=user.username %}">@ {{ user.username }} </a></h3>
+      {% endif %}
+      <h2>Registered Items</h2>
+      <p>here you find the registered queries</p>
+    </div>
+  </div>
+{% endblock %}

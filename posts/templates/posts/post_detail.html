@@ -1,0 +1,29 @@
+{% extends 'posts/post_base.html' %}
+{% block pregroup %}
+<div class="jumbotron">
+  <h2 class="title list-group-item-heading" ><b>{{post.name}}</b></h2>
+  <p>{{post.description_html|safe}}</p>
+</div>
+{% endblock %}
+{% block group_content %}
+ <div class="col-md-8">
+   {% if user.is_authenticated %}
+   <a href="{% url 'posts:addcomment' pk=post.pk %}" class="btn btn-md btn-fill btn-primary">
+   <span class="glyphicon glyphicon-plus-sign" ></span>Add comment!</a>
+   {% endif %}
+   <hr>
+   {% if post.comments.count == 0 %}
+     <h2>No Comments</h2>
+   {% else %}
+     {% for comment in post.comments.all %}
+     <div class="comment">
+       <div class="date">{{ comment.created_at }}</div>
+       <strong>{{ comment.user }}</strong>
+       <p>{{ comment.message|linebreaks }}</p>
+       <a href="{% url 'posts:comment_remove' pk=comment.pk%}"></a>
+     </div>
+     <hr>
+     {% endfor %}
+   {% endif %}
+ </div>
+{% endblock %}
